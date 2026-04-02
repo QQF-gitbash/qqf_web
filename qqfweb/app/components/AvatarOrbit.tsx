@@ -102,7 +102,7 @@ export default function AvatarOrbit() {
         </div>
 
         {/* 虚线箭头 + Click&Rotate/Stop 按钮 */}
-        <div className="absolute flex items-start gap-0" style={{ top: 6, right: -160 }}>
+        <div className="absolute flex items-start gap-0" style={{ top: 6, right: -180 }}>
           {/* 虚线灵动箭头 — 引用自定义 SVG */}
           <Image
             src="/home/arrow.svg"
