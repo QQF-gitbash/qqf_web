@@ -9,7 +9,7 @@ export default function Navbar() {
   const [activeTab, setActiveTab] = useState<NavItem>("Home");
 
   return (
-    <nav className="w-full flex items-center justify-between px-6 py-4 md:px-10 lg:px-16 bg-[var(--background)]">
+    <nav className="fixed top-0 left-0 right-0 z-50 w-full flex items-center justify-between px-6 py-4 md:px-10 lg:px-16 bg-[var(--background)]">
       {/* 左侧：品牌标识 */}
       <div className="flex items-center gap-2">
         <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-black text-white text-[10px] font-bold leading-none">Q</span>
