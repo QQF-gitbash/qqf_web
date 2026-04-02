@@ -39,7 +39,7 @@ export default function AvatarOrbit() {
   return (
     <div className="flex flex-col items-center justify-center">
       {/* 品牌标识 */}
-      <div className="flex items-center gap-2 mb-4" style={{ transform: `scale(${scale})`, transformOrigin: "center bottom" }}>
+      <div className="flex items-center gap-2 mb-4" style={{ transform: `scale(${scale * 0.8})`, transformOrigin: "center bottom" }}>
         <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-black text-white text-[10px] font-bold leading-none">Q</span>
         <span className="text-base font-bold tracking-wide">QQF-WEB</span>
       </div>
@@ -102,30 +102,21 @@ export default function AvatarOrbit() {
         </div>
 
         {/* 虚线箭头 + Click&Rotate/Stop 按钮 */}
-        <div className="absolute -top-4 -right-20 flex items-start gap-0">
-          {/* 虚线灵动箭头：从左下蜿蜒绕圈再指向右上按钮 */}
-          <svg
-            width="75"
-            height="65"
-            viewBox="0 0 75 65"
-            fill="none"
-            className="mt-5 -mr-1"
-          >
-            <path
-              d="M6 58 Q2 45, 10 38 Q18 30, 24 35 Q30 40, 28 30 Q26 20, 34 16 Q42 10, 50 14 Q56 17, 52 12 Q48 6, 56 5 L65 8"
-              stroke="#FF7F50"
-              strokeWidth="2"
-              strokeDasharray="5 4"
-              fill="none"
-              strokeLinecap="round"
-            />
-            <polygon points="62,3 70,8 63,13" fill="#FF7F50" />
-          </svg>
+        <div className="absolute flex items-start gap-0" style={{ top: 6, right: -160 }}>
+          {/* 虚线灵动箭头 — 引用自定义 SVG */}
+          <Image
+            src="/home/arrow.svg"
+            alt="arrow"
+            width={73}
+            height={40}
+            className="relative -mr-1"
+            style={{ top: 30, left: -10 }}
+          />
           {/* 按钮 */}
           <button
             onClick={() => setSpinning(!spinning)}
-            className="px-4 py-2 rounded-full text-sm font-semibold text-white cursor-pointer transition-transform hover:scale-105 active:scale-95 whitespace-nowrap"
-            style={{ backgroundColor: "#FF7F50" }}
+            className="py-2 rounded-full text-sm font-semibold text-white cursor-pointer transition-transform hover:scale-105 active:scale-95 whitespace-nowrap text-center"
+            style={{ backgroundColor: "#FF7F50", width: 130 }}
           >
             {spinning ? "Click&Stop" : "Click&Rotate"}
           </button>
@@ -151,6 +142,18 @@ export default function AvatarOrbit() {
           }
         `}</style>
       </div>
+      </div>
+
+      {/* 标题文字 + 副标题 */}
+      <div className="text-center mt-4" style={{ transform: `scale(${scale})`, transformOrigin: "center top" }}>
+        <h1 className="font-bold text-[28px] leading-tight text-black">
+          HELLO!&nbsp;&nbsp;I&apos;M QQF,
+          <br />
+          WELCME TO MY WEBSITE
+        </h1>
+        <p className="text-[12px] text-gray-400 mt-3 max-w-[340px] mx-auto leading-relaxed">
+          Enjoy the process and learn from every experience. Keep setting new goals and challenging yourself. You are capable of achieving more than you ever imagined.
+        </p>
       </div>
     </div>
   );
