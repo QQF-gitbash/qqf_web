@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import Tilt from "react-parallax-tilt";
 import SingerCard from "./SingerCard";
 
@@ -16,20 +16,8 @@ const CARD_BASE_HEIGHT = 168;
 export default function SingerCard3D() {
   const [isHovering, setIsHovering] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(1);
-
-  /* 用视口高度算 scale（与 AvatarOrbit 同一基准），1.5 倍放大 */
-  useEffect(() => {
-    const update = () => {
-      // 目标卡片高度 = 视口高度的 30% × 1.5 × 0.6 × 0.9
-      const targetH = window.innerHeight * 0.30 * 1.5 * 0.6 * 0.9;
-      const s = Math.min(Math.max(targetH / CARD_BASE_HEIGHT, 0.43), 3.0);
-      setScale(s);
-    };
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
+  /* 固定缩放：基于设计高度 900px 计算，外层 auto layout 统一处理响应式 */
+  const scale = Math.min(Math.max((900 * 0.30 * 1.5 * 0.6 * 0.9) / CARD_BASE_HEIGHT, 0.43), 3.0); // ≈ 1.30
 
   /* 视觉占位尺寸（补偿 transform:scale 不影响布局流的问题） */
   const visualW = CARD_BASE_WIDTH * scale;

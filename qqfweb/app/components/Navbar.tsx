@@ -68,7 +68,7 @@ export default function Navbar() {
       </div>
 
       {/* 右侧：ContactMe 按钮 */}
-      <button className="group flex items-center gap-2 bg-black text-white px-5 py-2.5 rounded-full text-sm font-medium hover:text-[#F2F2F7] transition-colors cursor-pointer">
+      <button className="group flex items-center gap-2 bg-black text-white px-5 py-2.5 rounded-full text-sm font-medium hover:text-[#F5A623] transition-colors cursor-pointer">
         {/* 电话图标 */}
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -187,7 +187,7 @@ export default function SingerCard() {
             <h3 className="text-[13px] font-bold text-black leading-tight truncate">
               《10,000 Hours》
             </h3>
-            <p className="text-[11px] text-gray-400 mt-0.5">--- Justin Bieber</p>
+            <p className="text-[11px] text-gray-400 mt-0.5">--- Dan + SHAy / Justin Bieber</p>
           </div>
         </div>
 

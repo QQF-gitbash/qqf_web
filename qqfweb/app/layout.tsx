@@ -30,7 +30,8 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <Navbar />
-        <main className="flex-1">
+        {/* gap = 35 * (vw / 1440)，上限 35px */}
+        <main className="flex-1" style={{ paddingTop: "min(1.6vw, 35px)" }}>
           {children}
         </main>
       </body>
