@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 
 const BASE_SIZE = 378; // 设计基准尺寸(px)
@@ -24,17 +24,8 @@ export default function AvatarOrbit() {
   const [spinning, setSpinning] = useState(false);
   const playState = spinning ? "running" : "paused";
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(1);
-
-  useEffect(() => {
-    const update = () => {
-      const vh45 = window.innerHeight * 0.55;
-      setScale(vh45 / BASE_SIZE);
-    };
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
+  /* 固定缩放：基于设计高度 900px 计算，外层 auto layout 统一处理响应式 */
+  const scale = (900 * 0.55) / BASE_SIZE; // ≈ 1.31
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -152,7 +143,7 @@ export default function AvatarOrbit() {
           WELCME TO MY WEBSITE
         </h1>
         <p className="text-[12px] text-gray-400 mt-3 max-w-[340px] mx-auto leading-relaxed">
-          Enjoy the process and learn from every experience. Keep setting new goals and challenging yourself. You are capable of achieving more than you ever imagined.
+          Enjoy the process and learn from every experience. Keep setting new goals and challenging yourself.
         </p>
       </div>
     </div>
