@@ -115,7 +115,7 @@ export default function AvatarOrbit() {
           {/* 按钮 */}
           <button
             onClick={() => setSpinning(!spinning)}
-            className="py-2 rounded-full text-sm font-semibold text-white cursor-pointer transition-transform hover:scale-105 active:scale-95 whitespace-nowrap text-center"
+            className="py-2 rounded-full text-sm font-normal text-white cursor-pointer transition-transform hover:scale-105 active:scale-95 whitespace-nowrap text-center"
             style={{ backgroundColor: "#FF7F50", width: 130 }}
           >
             {spinning ? "Click&Stop" : "Click&Rotate"}
