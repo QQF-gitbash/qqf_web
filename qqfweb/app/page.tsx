@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import AvatarOrbit from "./components/AvatarOrbit";
 import SingerCard3D from "./components/SingerCard3D";
 import LifeCard from "./components/LifeCard";
+import ProfileCard from "./components/ProfileCard";
 
 /** 设计稿基准宽度 — 内层按此宽度布局，再整体缩放到视口宽度 */
 const DESIGN_W = 1440;
@@ -40,7 +41,7 @@ export default function Home() {
     >
       {/* 内层：固定 DESIGN_W × DESIGN_H，等比 scale 到视口宽度 */}
       <div
-        className="flex items-center"
+        className="relative"
         style={{
           width: DESIGN_W,
           height: DESIGN_H,
@@ -49,24 +50,33 @@ export default function Home() {
           marginLeft: leftOffset,
         }}
       >
-        {/* ── 左侧盒子：SingerCard3D + LifeCard ── */}
-        <div className="flex-1 flex items-center justify-center overflow-visible">
-          <div
-            className="flex flex-col items-center gap-20"
-            style={{ transform: "translateY(-30px)" }}
-          >
-            <SingerCard3D />
-            <LifeCard />
+        {/* ── 左右两栏 ── */}
+        <div className="flex items-center w-full h-full">
+          {/* 左侧盒子：SingerCard3D + LifeCard */}
+          <div className="flex-1 flex items-center justify-center overflow-visible">
+            <div
+              className="flex flex-col items-center gap-20"
+              style={{ transform: "translateY(-30px) translateX(50px)" }}
+            >
+              <SingerCard3D />
+              <LifeCard />
+            </div>
+          </div>
+
+          {/* 右侧盒子：ProfileCard */}
+          <div className="flex-1 flex items-center justify-center overflow-visible">
+            <div style={{ marginLeft: 600 }}>
+              <ProfileCard />
+            </div>
           </div>
         </div>
 
-        {/* ── 中间盒子：AvatarOrbit ── */}
-        <div className="flex-shrink-0 flex items-center justify-center">
-          <AvatarOrbit />
+        {/* ── AvatarOrbit：绝对居中，头像始终在屏幕宽度中点 ── */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-full flex items-center pointer-events-none">
+          <div className="pointer-events-auto">
+            <AvatarOrbit />
+          </div>
         </div>
-
-        {/* ── 右侧盒子：暂时留空 ── */}
-        <div className="flex-1 min-w-0" />
       </div>
     </div>
   );
