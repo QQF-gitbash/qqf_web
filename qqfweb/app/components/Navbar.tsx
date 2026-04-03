@@ -1,15 +1,49 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const navItems = ["Home", "Project", "Life", "Skills"] as const;
 type NavItem = (typeof navItems)[number];
 
+const DESIGN_W = 1440;
+const NAV_H = 66; // 导航栏设计高度 px
+
 export default function Navbar() {
   const [activeTab, setActiveTab] = useState<NavItem>("Home");
+  const [scale, setScale] = useState(1);
+  const [leftOffset, setLeftOffset] = useState(0);
+
+  useEffect(() => {
+    const update = () => {
+      const vw = window.innerWidth;
+      if (vw >= DESIGN_W) {
+        setScale(1);
+        setLeftOffset((vw - DESIGN_W) / 2);
+      } else {
+        setScale(vw / DESIGN_W);
+        setLeftOffset(0);
+      }
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 w-full flex items-center justify-between px-6 py-4 md:px-10 lg:px-16 bg-[var(--background)]">
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 bg-[var(--background)]"
+      style={{ height: NAV_H * scale }}
+    >
+      <div
+        className="relative flex items-center justify-between px-16 py-4"
+        style={{
+          width: DESIGN_W,
+          height: NAV_H,
+          transform: `scale(${scale})`,
+          transformOrigin: "top left",
+          marginLeft: leftOffset,
+        }}
+      >
       {/* 左侧：品牌标识 */}
       <div className="flex items-center gap-2">
         <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-black text-white text-[10px] font-bold leading-none">Q</span>
@@ -65,6 +99,7 @@ export default function Navbar() {
         </svg>
         <span>ContactMe !</span>
       </button>
+      </div>
     </nav>
   );
 }
