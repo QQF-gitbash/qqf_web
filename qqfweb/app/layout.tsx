@@ -31,7 +31,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <Navbar />
         {/* pt-[66px] 补偿 fixed Navbar 的高度 */}
-        <main className="flex-1 pt-[66px]">{children}</main>
+        <main className="flex-1 pt-[30px]">{children}</main>
       </body>
     </html>
   );

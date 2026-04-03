@@ -1,5 +1,6 @@
 import AvatarOrbit from "./components/AvatarOrbit";
 import SingerCard3D from "./components/SingerCard3D";
+import LifeCard from "./components/LifeCard";
 
 export default function Home() {
   return (
@@ -8,10 +9,11 @@ export default function Home() {
       className="w-full flex items-center"
       style={{ minHeight: "calc(100vh - 66px)" }}
     >
-      {/* ── 左侧盒子：SingerCard3D，随盒子等比缩放，向上偏移 200px ── */}
-      <div className="flex-1 flex items-center justify-center min-w-0 px-4">
-        <div style={{ transform: "translateY(-200px)" }}>
+      {/* ── 左侧盒子：SingerCard3D + LifeCard 垂直排列 ── */}
+      <div className="flex-1 flex items-center justify-center pl-8 pr-4 overflow-visible">
+        <div className="flex flex-col items-center gap-20" style={{ transform: "translateY(-30px)" }}>
           <SingerCard3D />
+          <LifeCard />
         </div>
       </div>
 
