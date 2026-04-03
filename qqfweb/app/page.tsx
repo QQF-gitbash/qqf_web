@@ -7,6 +7,8 @@ import LifeCard from "./components/LifeCard";
 
 /** 设计稿基准宽度 — 内层按此宽度布局，再整体缩放到视口宽度 */
 const DESIGN_W = 1440;
+/** 内容盒子设计高度 = DESIGN_W × 9/16 */
+const DESIGN_H = DESIGN_W * 9 / 16; // 810
 
 export default function Home() {
   const [scale, setScale] = useState(1);
@@ -31,17 +33,17 @@ export default function Home() {
   }, []);
 
   return (
-    /* 外层：撑满可视区，隐藏缩放溢出 */
+    /* 外层：16:9 宽高比，隐藏缩放溢出 */
     <div
       className="w-full overflow-hidden"
-      style={{ height: "calc(100vh - 66px)" }}
+      style={{ height: `min(56.25vw, ${DESIGN_H}px)` }}
     >
-      {/* 内层：固定 DESIGN_W，等比 scale 到视口宽度 */}
+      {/* 内层：固定 DESIGN_W × DESIGN_H，等比 scale 到视口宽度 */}
       <div
         className="flex items-center"
         style={{
           width: DESIGN_W,
-          height: `calc((100vh - 66px) / ${scale})`,
+          height: DESIGN_H,
           transform: `scale(${scale})`,
           transformOrigin: "top left",
           marginLeft: leftOffset,
