@@ -64,7 +64,7 @@ export default function ProfileCard() {
                 </span>
               </div>
               <div className="flex gap-0.5">
-                {["photo", "bird", "github", "mail"].map((name) => (
+                {["phone", "xiaohongshu", "github", "mail"].map((name) => (
                   <Image
                     key={name}
                     src={`/home/profile_card/${name}.svg`}
